@@ -1,0 +1,20 @@
+# Constructor in Inheritance
+
+class Father:
+    def __init__(self)
+	    self.money=1000
+		print("Father Class Constructor")
+		
+	def show(self):
+	     print("Father Class Instance Method")
+		 
+		 
+class Son(Father):
+    def dis(self):
+	    print("Son Class Instance Method")
+		
+s = Son()
+print(s.money)
+
+
+Advance Python practical implemented till 54

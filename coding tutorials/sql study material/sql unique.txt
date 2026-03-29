@@ -1,0 +1,94 @@
+In MySQL, the UNIQUE constraint is used to ensure that all values in a specified column or a combination of columns are unique, meaning that no two rows can have the same value(s) in the unique column(s). The UNIQUE constraint can be applied to one or multiple columns in a table.
+
+Here's an explanation of how the UNIQUE constraint works in MySQL:
+
+Single Column UNIQUE Constraint:
+
+You can apply the UNIQUE constraint to a single column to ensure that each value in that column is unique across all rows in the table.
+
+sql
+Copy code
+CREATE TABLE table_name (
+    column1 datatype UNIQUE,
+    column2 datatype,
+    ...
+);
+For example, to create a table named users with a unique constraint on the email column:
+
+sql
+Copy code
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE,
+    name VARCHAR(255),
+    ...
+);
+In this case, the email column must have unique values, and attempting to insert a duplicate email address would result in a constraint violation error.
+
+Multiple Columns UNIQUE Constraint:
+
+You can also apply the UNIQUE constraint to a combination of columns, ensuring that the combination of values in those columns is unique across all rows.
+
+sql
+Copy code
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+    UNIQUE (column1, column2, ...)
+);
+For example, to create a table named orders with a unique constraint on the combination of order_id and customer_id:
+
+sql
+Copy code
+CREATE TABLE orders (
+    order_id INT,
+    customer_id INT,
+    order_date DATE,
+    ...
+    UNIQUE (order_id, customer_id)
+);
+In this case, each combination of order_id and customer_id must be unique in the orders table.
+
+Named UNIQUE Constraint:
+
+You can name a UNIQUE constraint using the CONSTRAINT keyword, which allows you to give a specific name to the constraint.
+
+sql
+Copy code
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+    CONSTRAINT constraint_name UNIQUE (column1, column2, ...)
+);
+For example, naming the unique constraint in the orders table:
+
+sql
+Copy code
+CREATE TABLE orders (
+    order_id INT,
+    customer_id INT,
+    order_date DATE,
+    ...
+    CONSTRAINT uc_order_customer UNIQUE (order_id, customer_id)
+);
+Here, uc_order_customer is the name of the unique constraint.
+
+Using ALTER TABLE to Add UNIQUE Constraint:
+
+If you want to add a UNIQUE constraint to an existing table, you can use the ALTER TABLE statement.
+
+sql
+Copy code
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name UNIQUE (column1, column2, ...);
+For example, to add a unique constraint to the email column in the users table:
+
+sql
+Copy code
+ALTER TABLE users
+ADD CONSTRAINT uc_email UNIQUE (email);
+This statement adds a unique constraint named uc_email to the email column in the users table.
+
+The UNIQUE constraint ensures data integrity by preventing duplicate values in specified columns, making it useful for maintaining accuracy and consistency in your database.
